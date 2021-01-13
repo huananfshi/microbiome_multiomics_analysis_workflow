@@ -7,6 +7,6 @@
 
 ### Used packages/tools:
   * python: `Numpy`, `scipy`, `seaborn`, `pandas`, `statsmodels`, `matplotlib`, and `scikit-learn`  
-  * R: `vegan`, `DADA2`, `ALDEx2`, `biomformat`,`ComplexHeatmap`, `circlize`, `ggplot2`, `RColorBrewer`, `car`, `mixOmics`, and `WRS2`.
+  * R: `vegan`, `DADA2`, `biomformat`,`ComplexHeatmap`, `circlize`, `ggplot2`, `RColorBrewer`, `car`, `mixOmics`, and `WRS2`.
   * Commandline tools: `biobakery_workflow`, `HUMAnN3`, `MetaPhlAn3`, `biom-format`
   * Others: `LEfSe`, `GraphPad Prism 9`
