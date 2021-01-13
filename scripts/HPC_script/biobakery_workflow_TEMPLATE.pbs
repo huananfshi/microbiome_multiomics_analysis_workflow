@@ -1,0 +1,79 @@
+#!/bin/bash
+
+############################# BEGIN PBS DIRECTIVES #############################
+
+### mail on job exit
+#PBS -m e
+
+### email address to send job updates
+#PBS -M huanans@bcm.edu
+
+### keep job output and error files in your home directory
+### this overrides -e and -o options to specify error/output file locations
+#PBS -k oe
+
+### request 1 CPUs on 1 node
+#PBS -l nodes=1:ppn=8
+
+### request 64gb virtual memory TOTAL
+
+#PBS -l vmem=64gb
+
+### request 2 days walltime
+#PBS -l walltime=48:00:00
+
+############################## END PBS DIRECTIVES ##############################
+
+
+### enable 'module' commands
+source /etc/profile.d/modules.sh
+
+### JOB EXECUTION ###
+
+echo "job start directory: ${PBS_O_WORKDIR}"
+
+cd /mount/durgan/EODF/
+
+module load anaconda2/5.0.1
+module load bowtie2/2.2.7
+module load blast/2.2.31
+module load raxml/8.2.12 
+module load muscle/3.8.31
+module load R/3.6.1 
+module load textlive 
+module load diamond/0.9.22
+module load metaphlan/2.0
+module laod minpath/1.4
+module load gnu/glpk/4.55
+module load humann2/0.11.2
+module unload diamond
+module load diamond/0.8.38
+module load samtools/0.1.19
+module load trimmomatic/0.35
+module load trf
+module load anadama2/0.6.3
+
+
+### setup environmental variables
+export KNEADDATA_DB_HUMAN_GENOME=/reference_genomes/Rattus_norvegicus/UCSC/rn6/Sequence/Bowtie2Index
+
+export KNEADDATA_DB_RIBOSOMAL_RNA=/share/apps/anadama2/kneaddata_databases
+
+export KNEADDATA_DB_HUMAN_TRANSCRIPTOME=/home/huanans/biobakery_workflows_databases/kneadata/kneaddata_db_human_transcriptome
+
+export STRAINPHLAN_DB_REFERENCE=/home/huanans/biobakery_workflows_databases/strainphlan_db_reference
+
+export STRAINPHLAN_DB_MARKERS=/home/huanans/biobakery_workflows_databases/strainphlan_db_markers
+
+### make changes here
+mkdir /project/durgan/EODF/biobakery_workflow_output/SAMPLE_DIRECTORY
+biobakery_workflows wmgx --input=SAMPLE_DIRECTORY/raw_data --thread 8 --input-extension=fastq  --output=/project/durgan/EODF/biobakery_workflow_output/SAMPLE_DIRECTORY/ --remove-intermediate-output
+### ignore below here, just example commands...
+#mkdir ./sample_star
+
+#STAR --runThreadN 8 --genomeDir $IRFINDER_HOME/REF/Human-hg38-release81/STAR/ --sjdbGTFfile $IRFINDER_HOME/REF/Human-hg38-release81/transcripts.gtf --readFilesIn ./sample_L001_R1_001.fastq ./sample_L001_R2_001.fastq --outSAMstrandField intronMotif --outFilterType BySJout --outFilterIntronMotifs RemoveNoncanonicalUnannotated --outSAMtype BAM SortedByCoordinate --outFileNamePrefix ./sample_star/star
+
+#mkdir ./sample_cufflinks
+
+#cufflinks -p 8 --compatible-hits-norm --GTF $IRFINDER_HOME/REF/Human-hg38-release81/transcripts.gtf -o ./sample_cufflinks ./sample_star/starAligned.sortedByCoord.out.bam
+

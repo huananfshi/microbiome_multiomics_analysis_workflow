@@ -1,0 +1,51 @@
+#!/bin/bash
+
+############################# BEGIN PBS DIRECTIVES #############################
+
+### mail on job exit
+#PBS -m e
+
+### email address to send job updates
+#PBS -M huanans@bcm.edu
+
+### keep job output and error files in your home directory
+### this overrides -e and -o options to specify error/output file locations
+#PBS -k oe
+
+### request 1 CPUs on 1 node
+#PBS -l nodes=1:ppn=8
+
+### request 64gb virtual memory TOTAL
+
+#PBS -l vmem=64gb
+
+### request 2 days walltime
+#PBS -l walltime=48:00:00
+
+############################## END PBS DIRECTIVES ##############################
+
+
+### enable 'module' commands
+source /etc/profile.d/modules.sh
+
+### JOB EXECUTION ###
+
+echo "job start directory: ${PBS_O_WORKDIR}"
+
+cd /mount/durgan/EODF_result/
+
+module load anaconda3/2019.10
+source activate /project/durgan
+
+
+
+### setup environmental variables
+
+### make changes here
+mkdir /mount/durgan/EODF_humann3/metaphlan
+for folder in `ls -d Durgan-*`; do metaphlan ${folder}/kneaddata/main/${folder}.fastq --input_type=fastq --bowtie2db=/mount/durgan/humann_database/metaphlan_db/ -o /mount/durgan/EODF_humann3/metaphlan/${folder}_metaphlan.tsv --sample_id $folder --nproc 8; done
+
+
+### ignore below here, just example commands...
+
+
