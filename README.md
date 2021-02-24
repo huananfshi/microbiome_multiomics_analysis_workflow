@@ -1,7 +1,7 @@
 # microbiome_multiomics_analysis_workflow
 # [A Multi-Omics Microbiome Analysis Workflow](https://github.com/huananfshi/microbiome_multiomics_analysis_workflow)
 
-**There repository contains all scripts for paper [Restructuring the Gut Microbiota by Intermittent Fasting Lowers Blood Pressure]().**
+**There repository contains all scripts for paper [Restructuring the Gut Microbiota by Intermittent Fasting Lowers Blood Pressure](https://doi.org/10.1161/circresaha.120.318155).**
 
 **This repository includes 16s and WGS analysis for microbiome, non-targeted metabolomics.**
 
