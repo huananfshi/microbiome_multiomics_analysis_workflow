@@ -3,7 +3,7 @@
 
 **There repository contains all scripts for paper [Restructuring the Gut Microbiota by Intermittent Fasting Lowers Blood Pressure](https://doi.org/10.1161/circresaha.120.318155).**
 
-**This repository includes 16s and WGS analysis for microbiome, non-targeted metabolomics.**
+**This repository includes 16s and WGS analysis for microbiome, non-targeted metabolomics, and multi-omics integration.**
 
 ### Used packages/tools:
   * python: `Numpy`, `scipy`, `seaborn`, `pandas`, `statsmodels`, `matplotlib`, and `scikit-learn`  
